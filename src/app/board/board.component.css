@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  overflow-x: auto; /* Allows scrolling if columns exceed screen width */
+}
+
+.columns {
+  display: flex;
+  flex-wrap: nowrap; /* Prevents wrapping of columns */
+  gap: 10px; /* Adds space between columns */
+  width: 100%;
+  overflow-x: auto; /* Allows horizontal scrolling if needed */
+}

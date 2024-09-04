@@ -1,0 +1,11 @@
+<h1>{{ board?.title }}</h1>
+<div class="columns">
+  <app-column
+    *ngFor="let column of board?.columns"
+    [column]="column"
+    [connectedTo]="dropListIds"
+    (dropListRef)="registerDropList($event)"
+    (cdkDropListDropped)="drop($event)"
+  >
+  </app-column>
+</div>

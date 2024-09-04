@@ -1,0 +1,8 @@
+:host {
+  flex: 1;
+  min-width: 200px; /* Ensures columns have a minimum width */
+  max-width: 100%; /* Prevents columns from exceeding the screen width */
+  box-sizing: border-box;
+  padding: 10px; /* Adds some padding inside each column */
+  background-color: #f0f0f0; /* Light grey background to indicate column area */
+}

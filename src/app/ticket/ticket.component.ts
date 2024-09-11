@@ -34,6 +34,7 @@ export class TicketComponent {
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: 'ticket-dialog.html',
+  styleUrls: ['ticket-dialog.css'],
   standalone: true,
   imports: [
     MatDialogTitle

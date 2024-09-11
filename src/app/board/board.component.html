@@ -6,6 +6,7 @@
     [connectedTo]="dropListIds"
     (dropListRef)="registerDropList($event)"
     (cdkDropListDropped)="drop($event)"
+    (columnUpdatedEmitter)="columnUpdated()"
   >
   </app-column>
 </div>

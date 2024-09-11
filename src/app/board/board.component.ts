@@ -14,6 +14,7 @@ import { NgForOf } from '@angular/common';
 export class BoardComponent {
   @Input() board: Board | undefined;
   @Output() boardEmitter = new EventEmitter<Board>();
+  @Output() boardUpdatedEmitter = new EventEmitter<Board>();
 
   dropListIds: string[] = [];
 
@@ -36,5 +37,9 @@ export class BoardComponent {
     }
     console.log(this.board);
     this.boardEmitter.emit(this.board);
+  }
+
+  columnUpdated() {
+    this.boardUpdatedEmitter.emit(this.board);
   }
 }

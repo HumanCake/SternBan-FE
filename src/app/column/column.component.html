@@ -7,6 +7,8 @@
 >
   <h2>{{ column?.title }}</h2>
   <div *ngFor="let ticket of column?.tickets" cdkDrag>
-    <app-ticket [ticket]="ticket"></app-ticket>
+    <app-ticket [ticket]="ticket"
+    (ticketUpdatedEmitter)="ticketUpdated()">
+    </app-ticket>
   </div>
 </div>

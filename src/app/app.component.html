@@ -1,5 +1,4 @@
-<div class="app"
-     >
+<div class="app">
 </div>
 <div>boardId: {{board?.boardId}}</div>
-<app-board [board]="board" (boardEmitter)="updateBoard($event)"></app-board>
+<app-board [board]="board" (boardUpdatedEmitter)="updateBoard($event)" (boardEmitter)="updateBoard($event)"></app-board>

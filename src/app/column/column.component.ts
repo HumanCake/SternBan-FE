@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output, ViewChild, AfterViewInit} from '
 import { Column } from './column.model';
 import { TicketComponent } from '../ticket/ticket.component';
 import { NgForOf } from '@angular/common';
-import {CdkDrag, CdkDragDrop, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
+import {CdkDrag, CdkDragDrop, CdkDropList} from '@angular/cdk/drag-drop';
 import {Ticket} from "../ticket/ticket.model";
 
 @Component({
@@ -16,6 +16,7 @@ export class ColumnComponent implements AfterViewInit{
   @Input() column: Column | undefined;
   @Input() connectedTo: string[] = [];
 
+  @Output() columnUpdatedEmitter = new EventEmitter();
   @Output() dropListRef = new EventEmitter<CdkDropList>();
   @Output() cdkDropListDropped = new EventEmitter<CdkDragDrop<any[]>>();
 
@@ -28,5 +29,9 @@ export class ColumnComponent implements AfterViewInit{
   drop(event: CdkDragDrop<Ticket[] | undefined, any>) {
     // @ts-ignore
     this.cdkDropListDropped.emit(event);
+  }
+
+  ticketUpdated() {
+    this.columnUpdatedEmitter.emit();
   }
 }

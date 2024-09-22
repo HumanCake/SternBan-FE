@@ -3,11 +3,12 @@ import {CdkDragDrop, transferArrayItem, moveItemInArray, CdkDropList} from '@ang
 import { Board } from './board.model';
 import { ColumnComponent } from '../column/column.component';
 import { NgForOf } from '@angular/common';
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [ColumnComponent, NgForOf],
+  imports: [ColumnComponent, NgForOf, FormsModule],
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
@@ -15,6 +16,8 @@ export class BoardComponent {
   @Input() board: Board | undefined;
   @Output() boardEmitter = new EventEmitter<Board>();
   @Output() boardUpdatedEmitter = new EventEmitter<Board>();
+  @Output() addColumnEmitter = new EventEmitter<string>();
+  columnToAddTitle: string = '';
 
   dropListIds: string[] = [];
 
@@ -41,5 +44,9 @@ export class BoardComponent {
 
   columnUpdated() {
     this.boardUpdatedEmitter.emit(this.board);
+  }
+
+  addColumn(columnTitle: string) {
+    this.addColumnEmitter.emit(columnTitle);
   }
 }

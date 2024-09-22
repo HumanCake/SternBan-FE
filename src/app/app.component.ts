@@ -21,18 +21,22 @@ export class AppComponent implements OnInit {
   board: Board | undefined;
   title = 'kanban';
 
+  loadBoard(): void {
+    this.getBoard().subscribe(
+      (response: Board) => {
+        this.board = response;
+        console.log("Fetched board: ", this.board);
+      }
+    );
+  }
+
   getBoard(): Observable<Board>{
     //TODO move to configuration
     return this._client.get<Board>('http://localhost:8085/api/Kanban/123');
   }
 
   ngOnInit(): void {
-    this.getBoard().subscribe(
-      (response: Board) => {
-        this.board = response;
-        console.log(this.board);
-      }
-    );
+    this.loadBoard();
   }
 
   updateBoard(updatedBoard: Board) {
@@ -48,5 +52,22 @@ export class AppComponent implements OnInit {
         console.log('Board updated successfully:', response);
      }
     );
+  }
+
+  addColumn(columnTitle: string) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+
+    const updateUrl = `http://localhost:8085/api/Kanban/123/columns/${columnTitle}`;
+
+    this._client.put(updateUrl, {}, {headers, responseType: 'json'}).subscribe(
+      (response: any) => {
+        console.log('Column added successfully:', response);
+        this.loadBoard();
+      }
+    );
+    console.log('Event for adding column called for column:', columnTitle);
   }
 }

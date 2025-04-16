@@ -60,5 +60,6 @@ export class DialogOverviewExampleDialog {
     this.ticket.description = this.localDescription;
     this.modifiedTicket.emit(this.ticket);
     console.log("Modified ticket = ", this.ticket);
+    this.dialogRef.close();
   }
 }

@@ -1,8 +1,7 @@
-import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { Ticket } from './ticket.model';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef, MatDialogTitle} from "@angular/material/dialog";
-import {FormsModule} from "@angular/forms";
-import {NgIf} from "@angular/common";
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef, MatDialogTitle } from "@angular/material/dialog";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: 'app-ticket',
@@ -15,7 +14,7 @@ export class TicketComponent {
   @Input() ticket!: Ticket;
   @Output() ticketUpdatedEmitter = new EventEmitter();
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) { }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
@@ -44,13 +43,12 @@ export class TicketComponent {
   standalone: true,
   imports: [
     MatDialogTitle,
-    FormsModule,
-    NgIf
+    FormsModule
   ]
 })
 export class DialogOverviewExampleDialog {
   protected localDescription: string | undefined;
-  @Output()  modifiedTicket = new EventEmitter<Ticket>();
+  @Output() modifiedTicket = new EventEmitter<Ticket>();
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public ticket: Ticket,

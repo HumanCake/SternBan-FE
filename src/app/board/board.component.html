@@ -1,3 +1,4 @@
+<div class="board-content">
 <h1>{{ board?.title }}</h1>
 <input type="text" [(ngModel)]="columnToAddTitle" placeholder="Enter column title"/>
 <button class="add-column-button" (click)="addColumn(columnToAddTitle)">Save </button>
@@ -11,4 +12,5 @@
     (columnUpdatedEmitter)="columnUpdated()"
   >
   </app-column>
+</div>
 </div>

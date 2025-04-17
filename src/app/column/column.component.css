@@ -1,8 +1,20 @@
 :host {
+  flex: 1 1 0;
+  min-width: 250px; /* prevents squishing too small */
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f0f0;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.column-content{
   flex: 1;
   min-width: 200px; /* Ensures columns have a minimum width */
   max-width: 100%; /* Prevents columns from exceeding the screen width */
   box-sizing: border-box;
   padding: 10px; /* Adds some padding inside each column */
   background-color: #f0f0f0; /* Light grey background to indicate column area */
+  min-height: 500px;
 }

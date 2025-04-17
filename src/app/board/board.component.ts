@@ -6,11 +6,10 @@ import { NgForOf } from '@angular/common';
 import {FormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-board',
-  standalone: true,
-  imports: [ColumnComponent, NgForOf, FormsModule],
-  templateUrl: './board.component.html',
-  styleUrls: ['./board.component.css']
+    selector: 'app-board',
+    imports: [ColumnComponent, NgForOf, FormsModule],
+    templateUrl: './board.component.html',
+    styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
   @Input() board: Board | undefined;

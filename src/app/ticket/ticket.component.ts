@@ -4,11 +4,10 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef, MatDialogTit
 import { FormsModule } from "@angular/forms";
 
 @Component({
-  selector: 'app-ticket',
-  standalone: true,
-  imports: [MatDialogModule],
-  templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.css']
+    selector: 'app-ticket',
+    imports: [MatDialogModule],
+    templateUrl: './ticket.component.html',
+    styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent {
   @Input() ticket!: Ticket;
@@ -37,14 +36,13 @@ export class TicketComponent {
 }
 
 @Component({
-  selector: 'dialog-overview-example-dialog',
-  templateUrl: 'ticket-dialog.html',
-  styleUrls: ['ticket-dialog.css'],
-  standalone: true,
-  imports: [
-    MatDialogTitle,
-    FormsModule
-  ]
+    selector: 'dialog-overview-example-dialog',
+    templateUrl: 'ticket-dialog.html',
+    styleUrls: ['ticket-dialog.css'],
+    imports: [
+        MatDialogTitle,
+        FormsModule
+    ]
 })
 export class DialogOverviewExampleDialog {
   protected localDescription: string | undefined;

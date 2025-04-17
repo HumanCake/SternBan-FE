@@ -6,11 +6,10 @@ import {CdkDrag, CdkDragDrop, CdkDropList} from '@angular/cdk/drag-drop';
 import {Ticket} from "../ticket/ticket.model";
 
 @Component({
-  selector: 'app-column',
-  templateUrl: './column.component.html',
-  styleUrls: ['./column.component.css'],
-  imports: [TicketComponent, NgForOf, CdkDrag, CdkDropList],
-  standalone: true
+    selector: 'app-column',
+    templateUrl: './column.component.html',
+    styleUrls: ['./column.component.css'],
+    imports: [TicketComponent, NgForOf, CdkDrag, CdkDropList]
 })
 export class ColumnComponent implements AfterViewInit{
   @Input() column: Column | undefined;

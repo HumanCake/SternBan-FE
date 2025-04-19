@@ -2,12 +2,15 @@ import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
 import {Ticket} from './ticket.model';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef, MatDialogTitle} from "@angular/material/dialog";
 import {FormsModule} from "@angular/forms";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatIconButton} from "@angular/material/button";
 
 @Component({
-  selector: 'app-ticket',
-  imports: [MatDialogModule],
-  templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.css']
+    selector: 'app-ticket',
+    imports: [MatDialogModule],
+    templateUrl: './ticket.component.html',
+    styleUrls: ['./ticket.component.css']
+
 })
 export class TicketComponent {
   @Input() ticket!: Ticket;
@@ -37,12 +40,14 @@ export class TicketComponent {
 }
 
 @Component({
-  selector: 'dialog-overview-example-dialog',
-  templateUrl: 'ticket-dialog.html',
-  styleUrls: ['ticket-dialog.css'],
+    selector: 'dialog-overview-example-dialog',
+    templateUrl: 'ticket-dialog.html',
+    styleUrls: ['ticket-dialog.css'],
   imports: [
     MatDialogTitle,
-    FormsModule
+    FormsModule,
+    MatMenuModule,
+    MatIconButton
   ]
 })
 export class DialogOverviewExampleDialog {
@@ -60,6 +65,12 @@ export class DialogOverviewExampleDialog {
     this.ticket.description = this.localDescription;
     this.modifiedTicket.emit(this.ticket);
     console.log("Modified ticket = ", this.ticket);
+    this.closeDialog()
+  }
+  closeDialog(): void {
     this.dialogRef.close();
   }
+  Delete() {
+  }
+
 }

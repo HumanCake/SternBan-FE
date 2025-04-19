@@ -1,5 +1,18 @@
-<h1 class="dialog-title" mat-dialog-title>{{ ticket.title }}</h1>
+<div class ticket-dialog-wrapper>
+  <button class="close-button" (click)="closeDialog()"> X </button >
+<div class="ticket-dialog-header">
+  <h1 mat-dialog-title class="dialog-title"><b>{{ticket.title}}</b></h1>
 
-<textarea [(ngModel)]="localDescription" class="description-edit"></textarea>
+  <!-- The menu button -->
+  <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+    ☰
+  </button>
+  <!-- The dropdown menu -->
+  <mat-menu #menu="matMenu" yPosition="below" xPosition="before">
+    <button mat-menu-item (click)="Delete()">Delete ticket</button>
+  </mat-menu>
 
-<button (click)="saveDescription()" class="save-button">Save</button>
+</div>
+  <textarea class="description-edit" [(ngModel)]="localDescription"></textarea>
+  <button class="save-button" (click)="saveDescription()">Save</button>
+</div>

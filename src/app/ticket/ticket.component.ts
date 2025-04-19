@@ -1,19 +1,20 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
-import { Ticket } from './ticket.model';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef, MatDialogTitle } from "@angular/material/dialog";
-import { FormsModule } from "@angular/forms";
+import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
+import {Ticket} from './ticket.model';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef, MatDialogTitle} from "@angular/material/dialog";
+import {FormsModule} from "@angular/forms";
 
 @Component({
-    selector: 'app-ticket',
-    imports: [MatDialogModule],
-    templateUrl: './ticket.component.html',
-    styleUrls: ['./ticket.component.css']
+  selector: 'app-ticket',
+  imports: [MatDialogModule],
+  templateUrl: './ticket.component.html',
+  styleUrls: ['./ticket.component.css']
 })
 export class TicketComponent {
   @Input() ticket!: Ticket;
   @Output() ticketUpdatedEmitter = new EventEmitter();
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
@@ -36,17 +37,18 @@ export class TicketComponent {
 }
 
 @Component({
-    selector: 'dialog-overview-example-dialog',
-    templateUrl: 'ticket-dialog.html',
-    styleUrls: ['ticket-dialog.css'],
-    imports: [
-        MatDialogTitle,
-        FormsModule
-    ]
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'ticket-dialog.html',
+  styleUrls: ['ticket-dialog.css'],
+  imports: [
+    MatDialogTitle,
+    FormsModule
+  ]
 })
 export class DialogOverviewExampleDialog {
-  protected localDescription: string | undefined;
   @Output() modifiedTicket = new EventEmitter<Ticket>();
+  protected localDescription: string | undefined;
+
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public ticket: Ticket,

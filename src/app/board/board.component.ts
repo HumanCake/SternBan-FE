@@ -1,15 +1,15 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {CdkDragDrop, transferArrayItem, moveItemInArray, CdkDropList} from '@angular/cdk/drag-drop';
-import { Board } from './board.model';
-import { ColumnComponent } from '../column/column.component';
-import { NgForOf } from '@angular/common';
+import {CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {Board} from './board.model';
+import {ColumnComponent} from '../column/column.component';
+import {NgForOf} from '@angular/common';
 import {FormsModule} from "@angular/forms";
 
 @Component({
-    selector: 'app-board',
-    imports: [ColumnComponent, NgForOf, FormsModule],
-    templateUrl: './board.component.html',
-    styleUrls: ['./board.component.css']
+  selector: 'app-board',
+  imports: [ColumnComponent, NgForOf, FormsModule],
+  templateUrl: './board.component.html',
+  styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
   @Input() board: Board | undefined;

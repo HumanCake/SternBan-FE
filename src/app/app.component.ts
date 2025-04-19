@@ -1,20 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Board } from "./board/board.model";
-import { Observable } from "rxjs";
-import { BoardComponent } from "./board/board.component";
+import {Component, OnInit} from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Board} from "./board/board.model";
+import {Observable} from "rxjs";
+import {BoardComponent} from "./board/board.component";
 
 @Component({
-    selector: 'app-root',
-    imports: [BoardComponent],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css'
+  selector: 'app-root',
+  imports: [BoardComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
 })
 
 export class AppComponent implements OnInit {
-  constructor(private _client: HttpClient) { }
   board: Board | undefined;
   title = 'kanban';
+
+  constructor(private _client: HttpClient) {
+  }
 
   loadBoard(): void {
     this.getBoard().subscribe(
@@ -42,7 +44,7 @@ export class AppComponent implements OnInit {
 
     const updateUrl = 'http://localhost:8085/api/Kanban';
 
-    this._client.put<Board>(updateUrl, updatedBoard, { headers, responseType: 'json' }).subscribe(
+    this._client.put<Board>(updateUrl, updatedBoard, {headers, responseType: 'json'}).subscribe(
       (response: Board) => {
         console.log('Board updated successfully:', response);
       }
@@ -57,7 +59,7 @@ export class AppComponent implements OnInit {
 
     const updateUrl = `http://localhost:8085/api/Kanban/123/columns/${columnTitle}`;
 
-    this._client.put(updateUrl, {}, { headers, responseType: 'json' }).subscribe(
+    this._client.put(updateUrl, {}, {headers, responseType: 'json'}).subscribe(
       (response: any) => {
         console.log('Column added successfully:', response);
         this.loadBoard();

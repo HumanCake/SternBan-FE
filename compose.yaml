@@ -23,7 +23,7 @@ services:
   # Frontend service
   frontend:
     build:
-        context: .
+      context: .
     environment:
       NODE_ENV: production
     ports:

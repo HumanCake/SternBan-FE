@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 
-.column-content{
+.column-content {
   flex: 1;
   min-width: 200px; /* Ensures columns have a minimum width */
   max-width: 100%; /* Prevents columns from exceeding the screen width */

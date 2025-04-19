@@ -6,6 +6,6 @@ export class Column {
     public title: string,
     public tickets?: Ticket[],
     public columns?: Column[]
-  )
-  {}
+  ) {
+  }
 }

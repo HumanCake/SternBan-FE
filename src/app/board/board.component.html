@@ -1,16 +1,16 @@
 <div class="board-content">
-<h1>{{ board?.title }}</h1>
-<input type="text" [(ngModel)]="columnToAddTitle" placeholder="Enter column title"/>
-<button class="add-column-button" (click)="addColumn(columnToAddTitle)">Save </button>
-<div class="columns">
-  <app-column
-    *ngFor="let column of board?.columns"
-    [column]="column"
-    [connectedTo]="dropListIds"
-    (dropListRef)="registerDropList($event)"
-    (cdkDropListDropped)="drop($event)"
-    (columnUpdatedEmitter)="columnUpdated()"
-  >
-  </app-column>
-</div>
+  <h1>{{ board?.title }}</h1>
+  <input [(ngModel)]="columnToAddTitle" placeholder="Enter column title" type="text"/>
+  <button (click)="addColumn(columnToAddTitle)" class="add-column-button">Save</button>
+  <div class="columns">
+    <app-column
+      (cdkDropListDropped)="drop($event)"
+      (columnUpdatedEmitter)="columnUpdated()"
+      (dropListRef)="registerDropList($event)"
+      *ngFor="let column of board?.columns"
+      [column]="column"
+      [connectedTo]="dropListIds"
+    >
+    </app-column>
+  </div>
 </div>

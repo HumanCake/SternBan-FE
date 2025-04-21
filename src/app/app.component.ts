@@ -1,70 +1,66 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Board} from "./board/board.model";
-import {Observable} from "rxjs";
 import {BoardComponent} from "./board/board.component";
+import { BoardService } from './Services/board.service';
+import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
+  imports: [BoardComponent, NgForOf, NgIf],
   selector: 'app-root',
-  imports: [BoardComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  templateUrl: './app.component.html'
 })
 
 export class AppComponent implements OnInit {
-  board: Board | undefined;
+  boards: Board[] = [];
   title = 'kanban';
+  selectedBoard: Board | null = null;
 
-  constructor(private _client: HttpClient) {
-  }
-
-  loadBoard(): void {
-    this.getBoard().subscribe(
-      (response: Board) => {
-        this.board = response;
-        console.log("Fetched board: ", this.board);
-      }
-    );
-  }
-
-  getBoard(): Observable<Board> {
-    //TODO move to configuration
-    return this._client.get<Board>('http://localhost:8085/api/Kanban/123');
+  constructor(private boardService: BoardService) {
   }
 
   ngOnInit(): void {
-    this.loadBoard();
+    this.loadBoards();
   }
 
-  updateBoard(updatedBoard: Board) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
+  // Load all boards
+  loadBoards(): void {
+    this.boardService.getBoards().subscribe(boards => {
+      this.boards = boards;
     });
+  }
 
-    const updateUrl = 'http://localhost:8085/api/Kanban';
+  // Select a specific board
+  selectBoard(boardId: string): void {
+    this.boardService.getBoard(boardId).subscribe(board => {
+      this.selectedBoard = board;
+    });
+  }
 
-    this._client.put<Board>(updateUrl, updatedBoard, {headers, responseType: 'json'}).subscribe(
-      (response: Board) => {
+  // Update the board
+  updateBoard(updatedBoard: Board): void {
+    this.boardService.updateBoard(updatedBoard).subscribe(
+      response => {
         console.log('Board updated successfully:', response);
+      },
+      error => {
+        console.error('Error updating board:', error);
       }
     );
   }
 
-  addColumn(columnTitle: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    });
-
-    const updateUrl = `http://localhost:8085/api/Kanban/123/columns/${columnTitle}`;
-
-    this._client.put(updateUrl, {}, {headers, responseType: 'json'}).subscribe(
-      (response: any) => {
-        console.log('Column added successfully:', response);
-        this.loadBoard();
-      }
-    );
-    console.log('Event for adding column called for column:', columnTitle);
+  // Add a column to the selected board
+  addColumn(columnTitle: string): void {
+    if (this.selectedBoard) {
+      this.boardService.addColumn(this.selectedBoard.boardId, columnTitle).subscribe(
+        response => {
+          console.log('Column added successfully:', response);
+          this.loadBoards(); // Refresh boards to include the new column
+        },
+        error => {
+          console.error('Error adding column:', error);
+        }
+      );
+    }
   }
 }

@@ -1,5 +1,18 @@
-<div class="app">
+<div *ngIf="!selectedBoard">
+  <h2>All Boards</h2>
+  <ul>
+    <li *ngFor="let board of boards" (click)="selectBoard(board.boardId)">
+      {{ board.boardId}}
+    </li>
+  </ul>
 </div>
-<div>boardId: {{ board?.boardId }}</div>
-<app-board (addColumnEmitter)="addColumn($event)" (boardEmitter)="updateBoard($event)" (boardUpdatedEmitter)="updateBoard($event)"
-           [board]="board"></app-board>
+
+<div *ngIf="selectedBoard">
+  <div>boardId: {{ selectedBoard.boardId }}</div>
+  <app-board
+    [board]="selectedBoard"
+    (addColumnEmitter)="addColumn($event)"
+    (boardEmitter)="updateBoard($event)"
+    (boardUpdatedEmitter)="updateBoard($event)">
+  </app-board>
+</div>

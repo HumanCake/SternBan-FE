@@ -2,10 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {Board} from "./board/board.model";
 import {BoardComponent} from "./board/board.component";
 import { BoardService } from './Services/board.service';
-import {NgForOf, NgIf} from "@angular/common";
+import {NgIf} from "@angular/common";
+import {BoardsListComponent} from "./boards-list/boards-list.component";
 
 @Component({
-  imports: [BoardComponent, NgForOf, NgIf],
+  imports: [BoardComponent, NgIf, BoardsListComponent],
   selector: 'app-root',
   styleUrl: './app.component.css',
   templateUrl: './app.component.html'
@@ -62,5 +63,8 @@ export class AppComponent implements OnInit {
         }
       );
     }
+  }
+  deSelectBoard() {
+    this.selectedBoard = null;
   }
 }

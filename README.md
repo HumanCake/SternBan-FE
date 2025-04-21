@@ -1,27 +1,34 @@
-# Kanban
+# Stern-FE
+This project is a front-end hobby project created to pair with the [Sternban backend](https://github.com/HumanCake/SternBan).
+It's built with Angular and Docker, and serves as a learning tool for front-end architecture, containerization, and deployment.
+The goal is to gain hands-on experience with frontend/backend integration, Docker, and CI/CD workflows.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
+## Installation & Deployment (Docker)
 
-## Development server
+This project uses Docker and Docker Compose to serve the Angular frontend and integrate with the rest of the stack.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Dockerfile
 
-## Code scaffolding
+The Dockerfile builds the Angular application using a multi-stage setup and serves it with NGINX on port:  
+`4200`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Docker Compose
 
-## Build
+`docker-compose.yml` defines three services that this project integrates with (defined in the backend repo):
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **frontend**: Serves the Angular frontend on port `4200`
+- **server**: (from backend project) Backend API, runs on port `8085`
+- **mongo**: MongoDB instance with a persistent volume
 
-## Running unit tests
+> Note: You can run the frontend standalone by only building the frontend container if you don’t need the backend.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Start the project
+To start the full stack including this frontend, navigate to the root folder of the main project and run:
 
-## Running end-to-end tests
+```bash
+docker-compose up --build
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Now you can reach the application via:
+- The backend [api definitions](http://localhost:8085/scalar/v1)
+- The frontend [frontpage](http://localhost:4200/)

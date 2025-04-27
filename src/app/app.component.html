@@ -1,4 +1,9 @@
 <div *ngIf="!selectedBoard">
+  <div>
+    <input type="text" #titleInput placeholder="Board Title" />
+    <button (click)="createNewBoard(titleInput.value)">Submit</button>
+  </div>
+
   <app-boards-list
     [boards]="boards"
     (boardSelected)="selectBoard($event)">

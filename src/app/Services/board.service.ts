@@ -36,4 +36,13 @@ export class BoardService {
     });
     return this.http.put(`${this.apiUrl}/${boardId}/columns/${columnTitle}`, {}, { headers });
   }
+  createBoard(boardTitle: string): Observable<string> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+
+    return this.http.post<string>(`${this.apiUrl}/${boardTitle}`, {}, { headers });
+  }
+
 }

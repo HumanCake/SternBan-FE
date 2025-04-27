@@ -4,6 +4,7 @@ import {BoardComponent} from "./board/board.component";
 import { BoardService } from './Services/board.service';
 import {NgIf} from "@angular/common";
 import {BoardsListComponent} from "./boards-list/boards-list.component";
+import {catchError, of} from "rxjs";
 
 @Component({
   imports: [BoardComponent, NgIf, BoardsListComponent],
@@ -66,5 +67,19 @@ export class AppComponent implements OnInit {
   }
   deSelectBoard() {
     this.selectedBoard = null;
+    this.loadBoards();
+  }
+  async createNewBoard(boardTitle: string) {
+    this.boardService.createBoard(boardTitle).pipe(
+      catchError(error => {
+        console.error('Error creating board:', error);
+        return of(null);
+      })
+    ).subscribe(response => {
+      if (response) {
+        console.log('Board created successfully:', response);
+        this.loadBoards();
+      }
+    });
   }
 }

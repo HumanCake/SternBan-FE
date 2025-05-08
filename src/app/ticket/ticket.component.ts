@@ -1,15 +1,16 @@
-import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
-import {Ticket} from './ticket.model';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef, MatDialogTitle} from "@angular/material/dialog";
-import {FormsModule} from "@angular/forms";
-import {MatMenuModule} from "@angular/material/menu";
-import {MatIconButton} from "@angular/material/button";
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { Ticket } from './ticket.model';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef, MatDialogTitle } from "@angular/material/dialog";
+import { FormsModule } from "@angular/forms";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatIconButton } from "@angular/material/button";
 
 @Component({
-    selector: 'app-ticket',
-    imports: [MatDialogModule],
-    templateUrl: './ticket.component.html',
-    styleUrls: ['./ticket.component.css']
+  selector: 'app-ticket',
+  imports: [MatDialogModule],
+  templateUrl: './ticket.component.html',
+  styleUrls: ['./ticket.component.css'],
+  standalone: true
 
 })
 export class TicketComponent {
@@ -40,15 +41,16 @@ export class TicketComponent {
 }
 
 @Component({
-    selector: 'dialog-overview-example-dialog',
-    templateUrl: 'ticket-dialog.html',
-    styleUrls: ['ticket-dialog.css'],
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'ticket-dialog.html',
+  styleUrls: ['ticket-dialog.css'],
   imports: [
     MatDialogTitle,
     FormsModule,
     MatMenuModule,
     MatIconButton
-  ]
+  ],
+  standalone: true
 })
 export class DialogOverviewExampleDialog {
   @Output() modifiedTicket = new EventEmitter<Ticket>();

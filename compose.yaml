@@ -3,7 +3,7 @@ services:
   backend:
     image: ghcr.io/humancake/sternban:main
     ports:
-      - 8085:8080
+      - "8085:8080"
     networks:
       - selfban
     environment:
@@ -14,7 +14,7 @@ services:
     image: mongo:latest
     restart: always
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
       - mongo-data:/data/db
     networks:
@@ -27,7 +27,7 @@ services:
     environment:
       NODE_ENV: production
     ports:
-      - 4200:4200
+      - "4200:4200"
     networks:
       - selfban
 

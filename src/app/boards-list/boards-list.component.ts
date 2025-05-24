@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import {Board} from "../board/board.model";
-import {NgForOf, NgIf} from "@angular/common";
+import { Board } from "../board/board.model";
+import { NgForOf, NgIf } from "@angular/common";
 
 @Component({
   selector: 'app-boards-list',
@@ -9,7 +9,8 @@ import {NgForOf, NgIf} from "@angular/common";
     NgIf,
     NgForOf
   ],
-  styleUrls: ['./boards-list.component.css']
+  styleUrls: ['./boards-list.component.css'],
+  standalone: true
 })
 export class BoardsListComponent {
   @Input() boards: Board[] = [];

@@ -10,7 +10,8 @@ import {catchError, of} from "rxjs";
   imports: [BoardComponent, NgIf, BoardsListComponent],
   selector: 'app-root',
   styleUrl: './app.component.css',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  standalone: true
 })
 
 export class AppComponent implements OnInit {

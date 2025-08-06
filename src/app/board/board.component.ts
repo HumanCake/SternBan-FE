@@ -2,12 +2,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CdkDragDrop, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Board } from './board.model';
 import { ColumnComponent } from '../column/column.component';
-import { NgForOf } from '@angular/common';
+
 import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: 'app-board',
-  imports: [ColumnComponent, NgForOf, FormsModule],
+  imports: [ColumnComponent, FormsModule],
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css'],
   standalone: true,

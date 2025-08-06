@@ -1,14 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Board } from "../board/board.model";
-import { NgForOf, NgIf } from "@angular/common";
+
 
 @Component({
   selector: 'app-boards-list',
   templateUrl: './boards-list.component.html',
-  imports: [
-    NgIf,
-    NgForOf
-  ],
+  imports: [],
   styleUrls: ['./boards-list.component.css'],
   standalone: true
 })

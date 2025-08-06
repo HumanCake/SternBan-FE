@@ -5,11 +5,13 @@
   cdkDropList
   cdkDropListElementContainer
   class="column-content"
->
+  >
   <h2>{{ column?.title }}</h2>
-  <div *ngFor="let ticket of column?.tickets" cdkDrag>
-    <app-ticket (ticketUpdatedEmitter)="ticketUpdated()"
-                [ticket]="ticket">
-    </app-ticket>
-  </div>
+  @for (ticket of column?.tickets; track ticket) {
+    <div cdkDrag>
+      <app-ticket (ticketUpdatedEmitter)="ticketUpdated()"
+        [ticket]="ticket">
+      </app-ticket>
+    </div>
+  }
 </div>

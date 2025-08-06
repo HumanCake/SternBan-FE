@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Column } from './column.model';
 import { TicketComponent } from '../ticket/ticket.component';
-import { NgForOf } from '@angular/common';
+
 import { CdkDrag, CdkDragDrop, CdkDropList } from '@angular/cdk/drag-drop';
 import { Ticket } from "../ticket/ticket.model";
 
@@ -9,7 +9,7 @@ import { Ticket } from "../ticket/ticket.model";
   selector: 'app-column',
   templateUrl: './column.component.html',
   styleUrls: ['./column.component.css'],
-  imports: [TicketComponent, NgForOf, CdkDrag, CdkDropList],
+  imports: [TicketComponent, CdkDrag, CdkDropList],
   standalone: true,
 })
 export class ColumnComponent implements AfterViewInit {

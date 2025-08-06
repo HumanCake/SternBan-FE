@@ -1,23 +1,26 @@
-<div *ngIf="!selectedBoard">
+@if (!selectedBoard) {
   <div>
-    <input type="text" #titleInput placeholder="Board Title" />
-    <button (click)="createNewBoard(titleInput.value)">Submit</button>
+    <div>
+      <input type="text" #titleInput placeholder="Board Title" />
+      <button (click)="createNewBoard(titleInput.value)">Submit</button>
+    </div>
+    <app-boards-list
+      [boards]="boards"
+      (boardSelected)="selectBoard($event)">
+    </app-boards-list>
   </div>
+}
 
-  <app-boards-list
-    [boards]="boards"
-    (boardSelected)="selectBoard($event)">
-  </app-boards-list>
-</div>
-
-<div *ngIf="selectedBoard">
-  <div>boardId: {{ selectedBoard.boardId }}
-  <button (click)="deSelectBoard()">See all boards</button>
+@if (selectedBoard) {
+  <div>
+    <div>boardId: {{ selectedBoard.boardId }}
+      <button (click)="deSelectBoard()">See all boards</button>
+    </div>
+    <app-board
+      [board]="selectedBoard"
+      (addColumnEmitter)="addColumn($event)"
+      (boardEmitter)="updateBoard($event)"
+      (boardUpdatedEmitter)="updateBoard($event)">
+    </app-board>
   </div>
-  <app-board
-    [board]="selectedBoard"
-    (addColumnEmitter)="addColumn($event)"
-    (boardEmitter)="updateBoard($event)"
-    (boardUpdatedEmitter)="updateBoard($event)">
-  </app-board>
-</div>
+}

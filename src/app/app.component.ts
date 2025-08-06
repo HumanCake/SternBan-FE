@@ -2,12 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {Board} from "./board/board.model";
 import {BoardComponent} from "./board/board.component";
 import { BoardService } from './Services/board.service';
-import {NgIf} from "@angular/common";
+
 import {BoardsListComponent} from "./boards-list/boards-list.component";
 import {catchError, of} from "rxjs";
 
 @Component({
-  imports: [BoardComponent, NgIf, BoardsListComponent],
+  imports: [BoardComponent, BoardsListComponent],
   selector: 'app-root',
   styleUrl: './app.component.css',
   templateUrl: './app.component.html',
